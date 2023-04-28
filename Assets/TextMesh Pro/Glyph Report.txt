@@ -1,0 +1,14 @@
+Font: Amiko  Style: Regular
+Point Size: 48   SP/PD Ratio: 10,4%
+
+Characters included: 126/128
+Missing characters: 2
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 2385	Hex: 951	Char [॑]
+ID: 2424	Hex: 978	Char [ॸ]
+
+Characters excluded from packing:
+----------------------------------------
