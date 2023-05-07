@@ -23,6 +23,8 @@ public class DialogManager : MonoBehaviour
     private DialogueTree dialogueTree;
     private string currentText;
 
+    private GameObject buttonText;
+
     public void StartDialogue()
     {
         dialogueTree = DialogueTreeFactory.CreateVillageDialogue();
@@ -50,6 +52,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         StartDialogue();
+        
     }
 
     // Update is called once per frame
@@ -73,6 +76,7 @@ public class DialogManager : MonoBehaviour
     private void PostOptionChosen()
     {
         currentText = dialogueTree.currentNode.text;
+        // option1Button.
         StartCoroutine(TypeDialogue());
     }
 
