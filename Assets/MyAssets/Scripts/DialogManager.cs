@@ -25,6 +25,9 @@ public class DialogManager : MonoBehaviour
 
     private GameObject buttonText;
 
+    public CharReplacerHindi _InputField =new CharReplacerHindi();
+    public CharReplacerHindi _Text = new CharReplacerHindi();
+
     public void StartDialogue()
     {
         dialogueTree = DialogueTreeFactory.CreateVillageDialogue();
@@ -37,7 +40,8 @@ public class DialogManager : MonoBehaviour
         foreach (char letter in currentText.ToCharArray())
         {
             dialogText.text += letter;
-            dialogText.ForceMeshUpdate();
+            // dialogText.ForceMeshUpdate();
+            _Text.UpdateMe();
             yield return new WaitForSeconds(typingSpeed);
         }
 

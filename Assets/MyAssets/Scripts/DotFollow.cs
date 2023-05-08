@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DotFollow : MonoBehaviour
 {
@@ -31,18 +32,25 @@ public class DotFollow : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, rayLength))
         {
-            Button hitButton = hit.collider.GetComponent<Button>();
+            print(hit.collider.name);
+            Button hitButton = hit.collider.gameObject.GetComponent<Button>();
             if (hitButton != null)
             {
+                print("notnull");
                 // Check if the same button is still being pointed at
                 if (hitButton == selectedButton)
                 {
                     // Update the timer and check if the selection time has been reached
+                    // print(hitButton.name+"timer: "+timer);
+                    print("timer finished? "+(timer >= selectionTime));
                     timer += Time.deltaTime;
                     if (timer >= selectionTime)
                     {
+                        print("select "+hitButton.name);
+                        print(hitButton);
                         // Select the button
-                        hitButton.Select();
+                        // hitButton.Select();
+                        ExecuteEvents.Execute(hitButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
                     }
                 }
                 else
@@ -50,6 +58,7 @@ public class DotFollow : MonoBehaviour
                     // Reset the timer and select the new button
                     timer = 0f;
                     selectedButton = hitButton;
+                    print("selected "+hitButton.name);
                 }
             }
             else
