@@ -51,6 +51,7 @@ public class DotFollow : MonoBehaviour
                         // Select the button
                         // hitButton.Select();
                         ExecuteEvents.Execute(hitButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+                        timer = 0f;
                     }
                 }
                 else

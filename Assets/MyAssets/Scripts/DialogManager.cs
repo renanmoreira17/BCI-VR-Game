@@ -25,8 +25,14 @@ public class DialogManager : MonoBehaviour
 
     private GameObject buttonText;
 
-    public CharReplacerHindi _InputField =new CharReplacerHindi();
-    public CharReplacerHindi _Text = new CharReplacerHindi();
+
+    public GameObject opt1TextObj;
+    public GameObject opt2TextObj;
+
+    
+    public CharReplacerHindi _TextDialogue = new CharReplacerHindi();
+    public CharReplacerHindi _TextOpt1 = new CharReplacerHindi();
+    public CharReplacerHindi _TextOpt2 = new CharReplacerHindi();
 
     public void StartDialogue()
     {
@@ -41,22 +47,31 @@ public class DialogManager : MonoBehaviour
         {
             dialogText.text += letter;
             // dialogText.ForceMeshUpdate();
-            _Text.UpdateMe();
+            _TextDialogue.UpdateMe();
             yield return new WaitForSeconds(typingSpeed);
         }
 
         if (!IsDialogueOver())
         {
+            option1Button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogueTree.currentNode.option1.optionText;
+            print(dialogueTree.currentNode.option1.text);
+            option2Button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogueTree.currentNode.option2.optionText;
+            print(dialogueTree.currentNode.option2.text);
             option1Button.SetActive(true);
             option2Button.SetActive(true);
+            _TextOpt1 = opt1TextObj.GetComponent<CharReplacerHindi>();
+            _TextOpt2 = opt2TextObj.GetComponent<CharReplacerHindi>();
+            _TextOpt1.UpdateMe();
+            _TextOpt2.UpdateMe();
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        option1Button.SetActive(false);
+        option2Button.SetActive(false);
         StartDialogue();
-        
     }
 
     // Update is called once per frame

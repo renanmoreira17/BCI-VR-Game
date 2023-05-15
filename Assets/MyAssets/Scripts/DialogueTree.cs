@@ -19,6 +19,7 @@ public class DialogueNode
 
     public DialogueNode(string optionText, string text)
     {
+        this.optionText = optionText;
         this.text = text;
         this.isLeaf = true;
     }
